@@ -10,7 +10,8 @@
           </li>
        </ul>
        <form class="form-inline my-2 my-lg-0">
-          <input type="search" name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search employees..." required>
+          <input type="search" (ngModelChange) = "onSearchEmployee(key.value)" #key = "ngModel" ngModel
+          name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search employees..." required>
        </form>
     </div>
   </nav>
@@ -80,7 +81,7 @@
       </div>
     </div>
   </div>
-
+<!-- update employee -->
   <div id = "edit_employee_modal" class="modal fade"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -94,7 +95,7 @@
                     <input type="text" ngModel ="{{editEmployee?.name}}" name = "name" class="form-control" id="name" placeholder="Name" required>
                 </div>
                 <input type="hidden" ngModel="{{editEmployee?.id}}" name="id" >
-                <input type="hidden" ngModel="{{editEmployee?.employeeCode}}" name="employeeCode"xw> 
+                <input type="hidden" ngModel="{{editEmployee?.employeeCode}}" name="employeeCode"> 
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" ngModel ="{{editEmployee?.email}}" name="email" class="form-control" id="email" placeholder="Email" required>

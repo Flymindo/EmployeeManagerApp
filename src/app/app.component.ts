@@ -56,7 +56,6 @@ export class AppComponent implements OnInit{
 
   }
   public onDeleteEmployee(employeeId:number){
-    console.log(employeeId)
     this.employeeService.deleteEmployees(employeeId).subscribe(
       (response:void) =>{
         this.getEmployees();
@@ -66,6 +65,23 @@ export class AppComponent implements OnInit{
       }
     )
 
+  }
+  public onSearchEmployee(key:String){
+    let results = []
+    for( let employee of this.employees){
+      if(employee.name.toLowerCase().indexOf(key.toLowerCase()) != -1
+      || employee.email.toLowerCase().indexOf(key.toLowerCase()) != -1
+      || employee.jobTitle.toLowerCase().indexOf(key.toLowerCase()) != -1
+      || employee.phoneNumber.toLowerCase().indexOf(key.toLowerCase()) != -1
+      ){
+        results.push(employee)
+      }
+    }
+    this.employees = results;
+
+    if (!key){
+      this.getEmployees()
+    }
   }
 
   public onOpenModal (employee:Employee | null,mode:string): void{
